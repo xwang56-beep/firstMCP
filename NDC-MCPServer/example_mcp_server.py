@@ -21,8 +21,10 @@ try:  # pragma: no cover - runtime dependency
     from src.config import load_config
     from src.main import query_knowledge_base
 except ModuleNotFoundError as exc:  # pragma: no cover - helpful error
+    missing = getattr(exc, "name", "unknown module")
     raise ModuleNotFoundError(
-        "Unable to import NDC-RAG modules. Ensure `NDC-RAG/src` is importable."
+        "Unable to import NDC-RAG modules. Ensure `NDC-RAG/src` is importable "
+        f"and all dependencies are installed (missing `{missing}`)."
     ) from exc
 
 
